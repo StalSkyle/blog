@@ -1,0 +1,38 @@
+:root {
+  --alert-success: #d1e7dd;
+  --alert-error: #f8d7da;
+  --alert-info: #cff4fc;
+  --alert-warning: #fff3cd;
+}
+
+ul.messages {
+  margin: var(--spacer) calc(var(--spacer) * 10);
+  list-style-type: none;
+}
+
+ul.messages li {
+  padding: var(--spacer);
+}
+
+ul.messages li.success {
+  background: var(--alert-success);
+}
+
+
+ul.messages li.error {
+  background: var(--alert-error);
+}
+
+ul.messages li.info {
+  background: var(--alert-info);
+}
+
+
+ul.messages li.warning {
+  background: var(--alert-warning);
+}
+
+ul.messages li a.close {
+  margin: 0;
+  float: right;
+}

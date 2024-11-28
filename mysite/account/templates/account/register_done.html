@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+  Регистрация заверешена
+{% endblock %}
+{% block content %}
+  <h1>Поздравляем, {{ new_user.first_name }}! Регистрация завершена.</h1>
+  <p>
+    Регистрация завершена, теперь можно <a href="{% url 'account:login' %}">войти</a>.
+  </p>
+{% endblock %}

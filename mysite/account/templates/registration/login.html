@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+  Вход
+{% endblock %}
+{% block content %}
+  <h1>Вход</h1>
+  {% if form.errors %}
+    <p>Неверное имя пользователя или пароль</p>
+  {% endif %}
+  <div class="login-form">
+    <form action="{% url 'account:login' %}" method="post">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}" />
+      <p>
+        <input type="submit" value="Войти" />
+      </p>
+    </form>
+  </div>
+  <p>
+    Если у Вас ещё нет учётной записи, Вы можете
+    <a href="{% url 'account:register' %}">зарегистрироваться</a>.
+  </p>
+{% endblock %}

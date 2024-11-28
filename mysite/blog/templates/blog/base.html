@@ -1,0 +1,77 @@
+{% load static %}
+{% load blog_extras %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+      {% block title %}
+
+      {% endblock %}
+    </title>
+    <link href="{% static 'css/messages.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+
+    <main>
+            {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">
+              {{ message|safe }}
+              <a href="#" class="close">x</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% block content %}
+
+      {% endblock %}
+    </main>
+    <nav id="sidebar">
+      {% if request.user.is_authenticated %}
+        <div class="menu">
+          <div class="{% if section == 'dashboard' %}selected{% endif %}">
+            <a href="{% url 'account:dashboard' %}">Профиль</a>
+          </div>
+          <div class="{% if section == 'images' %}selected{% endif %}">
+            <a href="#">Фото</a>
+          </div>
+          <div class="{% if section == 'people' %}selected{% endif %}">
+            <a href="#">Друзья</a>
+          </div>
+        </div>
+      {% endif %}
+      <div class="user">
+        {% if request.user.is_authenticated %}
+          Привет, {{ request.user.first_name|default:request.user.username }}!
+          <a href="{% url 'account:edit' %}"> Редактировать профиль</a>
+          <form action="{% url 'account:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Выход</button>
+          </form>
+        {% else %}
+          <a href="{% url 'account:login' %}">Войти</a>
+        {% endif %}
+      </div>
+      <h2>Мой блог</h2>
+      <p>Просто личный блог.</p>
+      <p>
+        Всего постов: {% total_posts %}
+      </p>
+      <h3>Последние посты</h3>
+      {% show_latest_posts 3 %}
+      <h3>Наиболее комментируемые посты</h3>
+      {% get_most_commented_posts as most_commented_posts %}
+      <ul>
+        {% for post in most_commented_posts %}
+          <li>
+            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </body>
+</html>

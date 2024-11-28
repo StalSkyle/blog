@@ -1,0 +1,124 @@
+:root {
+    --blue: rgb(13, 110, 253);
+    --gray: rgb(108, 117, 125);
+    --light: rgb(248, 249, 250);
+    --black: rgb(51, 51, 51);
+    --white: rgb(255, 255, 255);
+    --red: rgb(220, 53, 69);
+    --spacer: .5rem;
+    --light-bg: rgb(237, 237, 237);
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    margin: 0 30px;
+    padding: 0;
+    font-family: system-ui, Roboto, Arial;
+    display: flex;
+}
+
+a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+h1 {
+    border-bottom: 1px solid var(--gray);
+    padding: 0 0 10px 0;
+}
+
+h2 {
+    margin: 30px 0 0;
+}
+
+main {
+    margin: 30px;
+    flex-grow: 1;
+}
+
+#sidebar {
+    flex: 0 0 25%;
+    padding: 10px 20px;
+    background: var(--light);
+
+}
+
+.date {
+    color: var(--gray);
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+
+/* pagination */
+.pagination {
+    margin: 40px 0;
+    font-weight: bold;
+}
+
+/* forms */
+label {
+    display: block;
+    font-weight: bold;
+}
+
+input,
+textarea {
+    margin-bottom: var(--spacer);
+    background-color: var(--light-bg);
+    padding: calc(var(--spacer));
+    border: 0;
+}
+
+
+input[type=submit] {
+    font-weight: bold;
+    background: var(--blue);
+    color: var(--white);
+    padding: calc(var(--spacer)) calc(2*var(--spacer));
+    text-transform: uppercase;
+}
+
+
+.errorlist {
+    color: var(--red);
+    margin: calc(var(--spacer)/4);
+}
+
+.comment {
+    padding: var(--spacer);
+    margin: var(--spacer) 0;
+    border: 1px solid;
+}
+
+.comment:nth-child(even) {
+    background: var(--light-bg);
+}
+
+.comment .info {
+    font-weight: bold;    
+}
+
+.flex{
+    display: flex;
+    gap: var(--spacer);
+}
+
+.menu {
+    display: flex;
+    justify-content: end;
+    margin-bottom: var(--spacer);
+  }
+  
+.menu a {
+padding: var(--spacer) calc(var(--spacer)*2);
+}
+
+.menu .selected a,
+.menu a:hover {
+background-color: var(--blue);
+color: var(--white);
+}

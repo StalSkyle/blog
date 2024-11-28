@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block title %}
+  Регистрация
+{% endblock %}
+{% block content %}
+  <h1>Регистрация</h1>
+  <p>Для регистрации заполните форму ниже</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    <p>
+      <input type="submit" value="Зарегистрироваться" />
+    </p>
+  </form>
+{% endblock %}
